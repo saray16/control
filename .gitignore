@@ -25,3 +25,5 @@ yarn-error.log
 ".env" 
 "vendor/"  
 ".env"  
+vendor/ 
+.env 
