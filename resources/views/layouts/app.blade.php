@@ -10,11 +10,24 @@
 
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- Google Fonts Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- En layouts/app.blade.php dentro del <head> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- Bootstrap CSS (si lo necesitas) -->
+
+
+
+
+
 
     <style>
+        
         /* Aquí va todo el CSS que me diste */
         :root {
             --primary: #2c3e50;
@@ -70,7 +83,7 @@
         .hero-section {
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: var(--light);
-            padding: 100px 0;
+            padding: 90px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -381,6 +394,76 @@
             from { transform: translateX(100%); }
             to { transform: translateX(0); }
         }
+               /* Footer */
+               footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 30px 0 20px;
+        }
+
+        .footer-logo {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+
+        .footer-links i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .course-title {
+                min-height: auto;
+            }
+        }
+        .navbar {
+                 position: fixed;
+                 top: 0;
+                 width: 100%;
+                z-index: 1030;
+         }
+
+         body {
+             padding-top: 56px; /* Ajusta según la altura de tu navbar */
+        }
+
     </style>
 </head>
 <body>
@@ -437,11 +520,59 @@
     </div>
 </nav>
 
+
+
     <main class="container py-4">
         @yield('content')
     </main>
+     <!-- Footer con logo -->
+     <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <a href="#">
+                    <img src="cenamec.jpeg" alt="Logo CENAMEC" class="footer-logo">
+                </a>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5>Dirección</h5>
+                <ul class="footer-links">
+                    <li>Parroquia Altagracia, Esquina de Salas, Edificio</li>
+                    <li>Sede MPPE - piso 5 Zona Postal 1010, Municipio</li>
+                    <li>Libertador Caracas-Venezuela</li>
+                    <li>RIF: G-200087854</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5>Contacto</h5>
+                <ul class="footer-links">
+                    <li><i class="bi bi-telephone"></i> +58 212 5638244</li>
+                    <li><i class="bi bi-telephone"></i> +58 212 5648030</li>
+                    <li><i class="bi bi-telephone"></i> +58 212 5640232</li>
+                    <li><i class="bi bi-envelope"></i> @fundacioncenamec</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5>Redes Sociales</h5>
+                <ul class="footer-links">
+                    <li><i class="bi bi-twitter"></i> @CenamecFormaeInforma</li>
+                    <li><i class="bi bi-twitter"></i> @Funda_cenamec1</li>
+                    <li><i class="bi bi-facebook"></i> @FundacionCename</li>
+                    <li><i class="bi bi-instagram"></i> @FundaCenamec</li>
+                </ul>
+            </div>
+                
+            </div>
+            <div class="copyright text-center">
+                <p>© <?= date('Y') ?> CENAMEC. Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS (Popper + Bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   
 </body>
 </html>

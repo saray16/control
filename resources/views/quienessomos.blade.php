@@ -4,22 +4,20 @@
 
 @section('content')
 
-    <!-- Hero Section -->
-    <section class="hero-about">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4">Empoderando el futuro de la educación</h1>
-                    <p class="lead mb-4">Desde 1985, CENAMEC ha sido pionero en la transformación educativa, formando a las mentes más brillantes de Latinoamérica.</p>
-                    <a href="#nuestra-historia" class="btn btn-primary-custom">Conoce nuestra historia</a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipo CENAMEC" class="img-fluid rounded-3 shadow">
-                </div>
-            </div>
-        </div>
-    </section>
-
+<section class="hero-about py-5 footer-style">
+  <div class="container px-0">
+    <div class="row align-items-center gx-0">
+      <div class="col-lg-6 hero-text px-5">
+        <h1 class="display-4 fw-bold mb-4 text-white">Empoderando el futuro de la educación</h1>
+        <p class="lead mb-4 text-light">Desde 1985, CENAMEC ha sido pionero en la transformación educativa, formando a las mentes más brillantes de Latinoamérica.</p>
+        
+      </div>
+      <div class="col-lg-6 px-0">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Equipo CENAMEC" class="img-fluid rounded-3 shadow">
+      </div>
+    </div>
+  </div>
+</section>
     <!-- Sobre CENAMEC -->
     <section class="py-5 bg-light">
   <div class="container">
@@ -201,29 +199,32 @@
       </div> 
            
 
-    <!-- CTA -->
-   <section class="py-5">
-  <div class="container text-center">
-    <h2 class="section-title mb-4">¿Necesitas más información sobre nuestros programas?</h2>
-    <p class="lead mb-5">Contáctanos para conocer más sobre nuestras formaciones y cómo podemos apoyar el desarrollo profesional en el sector educativo.</p>
-    <a href="contacto.html" class="btn btn-primary-custom me-3">Contáctanos</a>
-    <div class="mt-3">
-      <i class="fa fa-arrow-down fa-2x" aria-hidden="true" style="color:#007bff;"></i>
-    </div>
-  </div>
-</section>
-
+   
 @endsection
 
 <style>
+    .footer-style {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background: linear-gradient(45deg, #2c3e50, #678ca3);
+  }
+   /* Ajusta texto para buen contraste */
+   .footer-style .hero-text h1,
+  .footer-style .hero-text p {
+    color: white;
+  }
+  .footer-style .col-lg-6.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
   /* Botón principal personalizado */
   .btn-primary-custom {
-    background: linear-gradient(45deg, #2c3e50, #678ca3);
-    border: none;
-    color: white;
-    padding: 12px 28px;
+    background: white;
+    color: #2c3e50;
     font-weight: 600;
     border-radius: 8px;
+    padding: 12px 28px;
     transition: background 0.3s ease;
   }
   .btn-primary-custom:hover {
@@ -261,6 +262,6 @@
   .function-content {
     margin-left: 50px;
   }
-
+ 
 
 </style>

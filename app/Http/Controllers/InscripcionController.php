@@ -7,22 +7,25 @@ use Illuminate\Support\Facades\DB;
 
 class InscripcionController extends Controller
 {
-    public function mostrarFormulario()
+    // Mostrar el formulario vacío o con tipo de formación preseleccionado
+    public function mostrarFormulario(Request $request)
     {
-        return view('inscripcion');
+        $tipo = $request->input('tipo'); // Captura el tipo desde la URL o el formulario
+        return view('inscripcion', ['tipoSeleccionado' => $tipo]);
     }
 
+    // Procesar el formulario
     public function procesarFormulario(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string',
             'cedula' => 'required|string',
             'estado' => 'required|string',
-            'taller' => 'nullable|string',
-            'curso' => 'nullable|string',
-            'diplomado' => 'nullable|string',
+            'taller' => 'nullable|required_if:tipo_formacion,T|string',
+            'curso' => 'nullable|required_if:tipo_formacion,C|string',
+            'diplomado' => 'nullable|required_if:tipo_formacion,D|string',
             'horas' => 'nullable|integer',
-            'tipo_formacion' => 'required|string',
+            'tipo_formacion' => 'required|string|in:T,C,D',
         ]);
 
         DB::table('inscripciones')->insert([

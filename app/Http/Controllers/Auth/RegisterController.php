@@ -39,7 +39,7 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
-        return redirect()->route('home')->with('success', 'Registro exitoso');
+        // Aquí agregué esta línea para redirigir con parámetro
+        return redirect()->route('home', ['from_course' => 'true'])->with('success', 'Registro exitoso');
     }
 }
-

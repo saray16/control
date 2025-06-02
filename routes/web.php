@@ -6,30 +6,50 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CertificadoController;
+
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.panel');
+
+
+Route::get('/usuario', [UsuarioController::class, 'index'])->middleware('auth');
+
 
 // Página principal
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Login y Registro
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login')->name('login.submit');
+    Route::post('/logout', 'logout')->name('logout');
+});
 
-Route::get('/registro', [RegisterController::class, 'showRegistrationForm'])->name('registro');
-Route::post('/registro', [RegisterController::class, 'register'])->name('registro.submit');
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/registro', 'showRegistrationForm')->name('registro');
+    Route::post('/registro', 'register')->name('registro.submit');
+});
 
 // Inscripción
+// Redirección inteligente para Inscribirse
+Route::get('/inscribirse', function () {
+    if (auth('web')->check()) {
+        return redirect()->route('inscripcion.formulario');
+    } else {
+        return redirect()->route('registro');
+    }
+})->name('inscribirse');
+
 Route::get('/inscripcion', [InscripcionController::class, 'mostrarFormulario'])->name('inscripcion.formulario');
 Route::post('/inscripcion', [InscripcionController::class, 'procesarFormulario'])->name('inscribir');
+
 
 // Historia
 Route::view('/historia', 'quienessomos')->name('historia');
 
 // RUTAS PROTEGIDAS
-
-
-Route::middleware(['auth', 'admin'])->get('/dashboard', function () {
-    return 'Bienvenido Admin';
-})->name('admin.dashboard');
-
-
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::delete('/admin/usuarios/{id}', [AdminController::class, 'destroy'])->name('admin.usuarios.destroy');

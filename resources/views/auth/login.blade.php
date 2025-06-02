@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión - CENAMEC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap + Google Fonts -->
+    <!-- Bootstrap 5.3 + Google Fonts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
-            --accent:rgb(103, 140, 163);
+            --accent: rgb(103, 140, 163);
             --light: #f8f9fa;
             --dark: #343a40;
         }
@@ -115,7 +113,6 @@
             @endif
 
             <form method="POST" action="{{ route('login.submit') }}">
-
                 @csrf
 
                 <div class="mb-4">
@@ -124,9 +121,9 @@
                            class="form-control @error('email') is-invalid @enderror" 
                            name="email" 
                            id="email" 
+                           value="{{ old('email') }}"
                            required 
-                           placeholder="Ingrese su correo"
-                           value="{{ old('email') }}">
+                           placeholder="Ingrese su correo">
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -156,5 +153,6 @@
     <p>© 2025 Todos los derechos reservados</p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

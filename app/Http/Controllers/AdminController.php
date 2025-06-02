@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,7 +11,9 @@ class AdminController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return view('admin.dashboard', compact('usuarios'));
+        $control_estudio = DB::table('control_de_estudios')->take(10)->get();
+        #dd($control_estudio);
+        return view('dashboard', compact('usuarios', 'control_estudio'));
     }
 
     public function edit($id)

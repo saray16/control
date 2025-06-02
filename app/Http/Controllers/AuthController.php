@@ -16,25 +16,24 @@ class AuthController extends Controller
     // Procesar login
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
+            // Redirección según el rol
             if (Auth::user()->rol === 'admin') {
-                // Admin va a dashboard
                 return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->intended('/');
             }
-
-            // Usuario normal vuelve a home
-            return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'email' => 'Las credenciales no coinciden con nuestros registros.',
+            'email' => 'Estas credenciales no coinciden con nuestros registros.',
         ]);
     }
 
