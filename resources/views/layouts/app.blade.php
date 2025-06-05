@@ -19,6 +19,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet"> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!-- Fuente Poppins desde Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 <!-- Bootstrap CSS (si lo necesitas) -->
 
 
@@ -464,6 +469,175 @@
              padding-top: 56px; /* Ajusta según la altura de tu navbar */
         }
 
+        .hidden{
+            display: none;
+        }
+/* Sidebar styles */
+
+.sidebar {
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-sticky {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.sidebar-heading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #495057;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.sidebar-subheading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin-top: 1rem;
+}
+
+.nav-link {
+  color: #495057;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+}
+
+.nav-link.active {
+  color: #0d6efd;
+  background-color: rgba(13, 110, 253, 0.1);
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+ /* Estilos para Sidebar Fijo */
+ 
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: var(--light);
+    padding: 20px;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes del contenido principal */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .main-content {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+    }
+    .main-content {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+    .sidebar h2 {
+        display: ;
+    }
+}
+.category-filter.active {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    color: #0066cc;
+}
+.category-filter.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.course-card {
+  transition: all 0.3s ease;
+}
+
+.col-md-4.mb-4 {
+  transition: all 0.3s ease;
+}
+
+    .highlight-courses {
+        border-left: 4px solid #ffc107;
+        transition: all 0.3s ease;
+    }
+    .highlight-courses:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    #inscripcion.fixed-top-form {
+    position: fixed;
+    top: 80px; /* Ajusta según la altura de tu header */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 80vh;
+    overflow-y: auto;
+    display: none; /* Inicialmente oculto */
+}
+
     </style>
 </head>
 <body>
@@ -572,7 +746,7 @@
     <!-- Bootstrap JS (Popper + Bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    @yield('script')
    
 </body>
 </html>

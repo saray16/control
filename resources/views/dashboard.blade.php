@@ -55,13 +55,13 @@
                                     <td>{{ $usuario->email }}</td>
                                     <td><span class="badge bg-info text-dark">{{ $usuario->rol }}</span></td>
                                     <td>
-                                        <a href="#" class="btn btn-outline-primary btn-sm me-1">
+                                        <a href="#" class="btn btn-outline-primary btn-sm me-1" title="Editar usuario">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <form action="{{ route('admin.usuarios.destroy', $usuario->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button onclick="return confirm('¿Eliminar este usuario?')" class="btn btn-outline-danger btn-sm">
+                                            <button onclick="return confirm('¿Eliminar este usuario?')" class="btn btn-outline-danger btn-sm" title="Eliminar usuario">
                                                 <i class="bi bi-trash3-fill"></i>
                                             </button>
                                         </form>
@@ -72,6 +72,15 @@
                                     <td colspan="5" class="text-muted">No hay usuarios registrados.</td>
                                 </tr>
                                 @endforelse
+                                <!-- Fila con botón para crear usuario -->
+                                <tr>
+                                    <td colspan="4" class="text-end fw-semibold">Crear nuevo usuario:</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#crearUsuarioModal">
+                                            <i class="bi bi-plus-lg"></i> Nuevo
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -151,6 +160,47 @@
     </div>
 </div>
 
+<!-- Modal para crear nuevo usuario -->
+<div class="modal fade" id="crearUsuarioModal" tabindex="-1" aria-labelledby="crearUsuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST" action="{{ route('admin.usuarios.create') }}">
+      @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="crearUsuarioModalLabel">Crear Nuevo Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="rol" class="form-label">Rol</label>
+            <select class="form-select" id="rol" name="rol" required>
+              <option value="">Seleccione un rol</option>
+              <option value="admin">Administrador</option>
+              <option value="usuario">Usuario</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear Usuario</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
     function filterTable(input, tableId) {
         const filter = input.value.toLowerCase();
@@ -161,4 +211,8 @@
         });
     }
 </script>
+@endsection
+
+@section('script')
+    <script type="module" src="{{ asset('js/abrirVentana.js') }}"></script>
 @endsection

@@ -16,6 +16,13 @@ class AdminController extends Controller
         return view('dashboard', compact('usuarios', 'control_estudio'));
     }
 
+    public function create(Request $request)
+    {
+        $nombre = $request->input("nombre");
+        #guardar los datos en la bd.
+        return "HOLA";
+    }
+
     public function edit($id)
     {
         $usuario = User::findOrFail($id);

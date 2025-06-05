@@ -3,6 +3,7 @@
 @section('title', 'Formulario de Inscripción')
 
 @section('content')
+
 <h1>Formulario de Inscripción</h1>
 
 @if (session('success'))

@@ -51,5 +51,9 @@ Route::view('/historia', 'quienessomos')->name('historia');
 
 // RUTAS PROTEGIDAS
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-Route::delete('/admin/usuarios/{id}', [AdminController::class, 'destroy'])->name('admin.usuarios.destroy');
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin', 'index')->name('admin.dashboard');
+    Route::post('/admin/crear/usuario', 'create')->name('admin.usuarios.create');
+    Route::delete('/admin/usuarios/{id}', 'destroy')->name('admin.usuarios.destroy');
+});

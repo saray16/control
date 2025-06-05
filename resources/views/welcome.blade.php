@@ -1,66 +1,140 @@
-@extends('layouts.app') @section('title', 'Inicio') @section('content')
+@extends('layouts.app') 
+@section('title', 'Inicio') 
+@section('content')
 <!-- Hero Section -->
-
 <section class="hero-section hero-fullwidth">
-	<div class="hero-content">
-		<h1 class="hero-title">Todas las habilidades que necesitas en un único lugar</h1>
-		<p class="hero-subtitle">Desde habilidades esenciales hasta temas técnicos, CENAMEC respalda tu desarrollo profesional</p>
-	</div>
+    <div class="hero-content">
+        <h1 class="hero-title">Todas las habilidades que necesitas en un único lugar</h1>
+        <p class="hero-subtitle">Desde habilidades esenciales hasta temas técnicos, CENAMEC respalda tu desarrollo profesional</p>
+    </div>
 </section>
 
+<!-- Sidebar + Main Content Layout -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar ">
+            <div class="position-sticky pt-3 sidebar-sticky">
+                <h3 class="sidebar-heading px-3 mb-3">Categorías de Formación</h3>
+                <ul class="nav flex-column">
+                <div class="col-md-3 col-lg-2 d-md-block sidebar bg-light border-end">
+    <div class="position-sticky pt-3 sidebar-sticky">
 
-<!-- Main Content -->
-<main class="container mt-4">
-	<!-- Navigation Tabs -->
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<li class="nav-item" role="presentation">
-			<button class="nav-link active" id="cursos-tab" data-bs-toggle="tab" data-bs-target="#cursos" type="button" role="tab" aria-controls="cursos" aria-selected="true">
-                    <i class="bi bi-journal-bookmark-fill me-2"></i>Cursos
-                </button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link" id="diplomados-tab" data-bs-toggle="tab" data-bs-target="#diplomados" type="button" role="tab" aria-controls="diplomados" aria-selected="false">
-                    <i class="bi bi-award-fill me-2"></i>Diplomados
-                </button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link" id="talleres-tab" data-bs-toggle="tab" data-bs-target="#talleres" type="button" role="tab" aria-controls="talleres" aria-selected="false">
-                    <i class="bi bi-tools me-2"></i>Talleres
-                </button>
-		</li>
-		<li class="nav-item" role="presentation">
-			<button class="nav-link" id="inscripcion-tab" data-bs-toggle="tab" data-bs-target="#inscripcion" type="button" role="tab" aria-controls="inscripcion" aria-selected="false">
-                    <i class="bi bi-pencil-square me-2"></i>Inscripción
-                </button>
-		</li>
-	</ul>
+        
   
+    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="hoy"><i class="bi bi-check2-circle me-2"></i>Disponibles de hoy</a></li>
+          <li class="nav-item"><a class="nav-link category-filter active" href="#" data-category="all"><i class="bi bi-grid-fill me-2"></i>Todas</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="biologia"><i class="bi bi-flower3 me-2"></i>Biología</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="fisica"><i class="bi bi-eyedropper me-2"></i>Física</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="quimica"><i class="bi bi-funnel me-2"></i>Química</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="matematicas"><i class="bi bi-calculator me-2"></i>Matemática</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="artes"><i class="bi bi-palette me-2"></i>Artes</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="idiomas"><i class="bi bi-translate me-2"></i>Idiomas</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="tecnologia"><i class="bi bi-cpu me-2"></i>Tecnología</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="ambiente"><i class="bi bi-tree me-2"></i>Ambiente</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="ocev"><i class="bi bi-clipboard-data me-2"></i>OCEV</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="ajedrez"><i class="bi bi-chess me-2"></i>Ajedrez</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="lectura"><i class="bi bi-book me-2"></i>Lectura/Escritura</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="tics"><i class="bi bi-laptop me-2"></i>TICs</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="eis"><i class="bi bi-lightbulb me-2"></i>EIS</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="deporte"><i class="bi bi-trophy me-2"></i>Deporte</a></li>
+                    <li class="nav-item"><a class="nav-link category-filter" href="#" data-category="hse"><i class="bi bi-shield-check me-2"></i>HSE</a></li>
+                </ul>
+        </div>
+        </div>  
+        
+<!-- Main Content -->
+<main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
+	<!-- Navigation Tabs -->
+  <ul class="nav nav-tabs d-none" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="cursos-tab" data-bs-toggle="tab" data-bs-target="#cursos" type="button" role="tab" aria-controls="cursos" aria-selected="true"></button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="talleres-tab" data-bs-toggle="tab" data-bs-target="#talleres" type="button" role="tab" aria-controls="talleres" aria-selected="false"></button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="diplomados-tab" data-bs-toggle="tab" data-bs-target="#diplomados" type="button" role="tab" aria-controls="diplomados" aria-selected="false"></button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="inscripcion-tab" data-bs-toggle="tab" data-bs-target="#inscripcion" type="button" role="tab" aria-controls="inscripcion" aria-selected="false"></button>
+  </li>
+</ul>
 
-	<div class="tab-content py-4" id="myTabContent">
-		<!-- Cursos -->
-		<div class="tab-pane fade show active" id="cursos" role="tabpanel">
-			<h2 class="category-title">Cursos de Ciencias</h2>
-			<div class="row">
-			<div class="col-md-4 mb-4">
-<div class="course-card science-card" data-category="biologia">
-<div class="course-img">
-<i class="bi bi-robot"></i>
-</div>
-<div class="course-body">
-<h3 class="course-title">ESTRATEGIAS DIDÁCTICAS PARA LA INNOVACIÓN EN LA ENSEÑANZA Y APRENDIZAJE DE LA BIOLOGÍA</h3>
-<p class="course-description">Este curso innovador integra metodologías activas con tecnologías emergentes para la enseñanza de la biología.</p>
-<div class="course-meta">
-<span class="course-rating">
-<i class="bi bi-star-fill"></i>4.3
-</span>
-<span class="course-price">Gratis</span>
-</div>
-<button class="btn btn-unavailable">
-<i class="bi bi-x-circle me-2"></i> No Disponible
+  
+<div class="tab-pane fade show active" id="cursos" role="tabpanel">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="category-title mb-0">Cursos de Ciencias</h2>
+    
+  </div>
+  <div class="row">
+<div class="col-md-4 mb-4 course-item" data-category="idiomas" data-hoy="true">
+  <div class="course-card" data-category="idiomas" data-hoy="true"> <!-- Añadido data-category -->
+    <div class="course-img"><i class="bi bi-translate"></i></div>
+    <div class="course-body">
+      <h3 class="course-title">CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 1</h3>
+      <p class="course-description">Aprende inglés desde cero con vocabulario esencial, estructuras básicas y práctica oral y escrita.</p>
+      <div class="course-meta">
+        <span class="course-rating"><i class="bi bi-star-fill"></i>4.2</span>
+        <span class="course-price">Gratis</span>
+      </div>
+      <button class="btn-enroll"
+        data-tipo="C"
+        data-nombre="CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 1"
+        onclick="abrirInscripcionVisible('C', 'CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 1')">
+  <i class="fas fa-sign-in-alt"></i> Inscribirse
 </button>
+
+    </div>
+  </div>
 </div>
+
+<!-- Curso de Inglés Nivel 2 (Categoría: idiomas) -->
+<div class="col-md-4 mb-4 course-item" data-category="idiomas" data-hoy="true">
+
+  <div class="course-card" data-category="idiomas" data-hoy="true"> <!-- 👈 aquí -->
+    <div class="course-img"><i class="bi bi-translate"></i></div>
+    <div class="course-body">
+      <h3 class="course-title">CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2</h3>
+      <p class="course-description">Consolida y amplía tus conocimientos del idioma inglés con temas del día a día y práctica interactiva.</p>
+      <div class="course-meta">
+        <span class="course-rating"><i class="bi bi-star-fill"></i>4.3</span>
+        <span class="course-price">Gratis</span>
+      </div>
+      <button class="btn-enroll"
+              data-tipo="C"
+              data-nombre="CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2"
+              onclick="abrirInscripcionVisible('C', 'CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2')">
+        <i class="fas fa-sign-in-alt"></i> Inscribirse
+      </button>
+    </div>
+  </div>
 </div>
+
+
+<!-- Curso de Biología (Categoría: biologia) -->
+<div class="col-md-4 mb-4">
+  <div class="course-card" data-category="biologia">
+    <div class="course-img">
+      <i class="bi bi-robot"></i>
+    </div>
+    <div class="course-body">
+      <h3 class="course-title">ESTRATEGIAS DIDÁCTICAS PARA LA INNOVACIÓN EN LA ENSEÑANZA Y APRENDIZAJE DE LA BIOLOGÍA</h3>
+      <p class="course-description">Este curso innovador integra metodologías activas con tecnologías emergentes para la enseñanza de la biología.</p>
+      <div class="course-meta">
+        <span class="course-rating">
+          <i class="bi bi-star-fill"></i>4.3
+        </span>
+        <span class="course-price">Gratis</span>
+      </div>
+      <button class="btn btn-unavailable">
+        <i class="bi bi-x-circle me-2"></i> No Disponible
+      </button>
+    </div>
+  </div>
 </div>
+
+<!-- Matemáticas -->
 <div class="col-md-4 mb-4">
   <div class="course-card math-card" data-category="matematicas">
     <div class="course-img">
@@ -82,6 +156,7 @@
   </div>
 </div>
 
+<!-- Biología -->
 <div class="col-md-4 mb-4">
   <div class="course-card science-card" data-category="biologia">
     <div class="course-img">
@@ -103,6 +178,7 @@
   </div>
 </div>
 
+<!-- Matemáticas -->
 <div class="col-md-4 mb-4">
   <div class="course-card math-card" data-category="matematicas">
     <div class="course-img">
@@ -124,8 +200,9 @@
   </div>
 </div>
 
+<!-- Literatura -->
 <div class="col-md-4 mb-4">
-  <div class="course-card science-card" data-category="literatura">
+  <div class="course-card literature-card" data-category="lectura">
     <div class="course-img">
       <i class="bi bi-pencil-square"></i>
     </div>
@@ -145,49 +222,9 @@
   </div>
 </div>
 
+<!-- Mecatrónica -->
 <div class="col-md-4 mb-4">
-  <div class="course-card">
-    <div class="course-img"><i class="bi bi-translate"></i></div>
-    <div class="course-body">
-      <h3 class="course-title">CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 1</h3>
-      <p class="course-description">Aprende inglés desde cero con vocabulario esencial, estructuras básicas y práctica oral y escrita.</p>
-      <div class="course-meta">
-        <span class="course-rating"><i class="bi bi-star-fill"></i>4.2</span>
-        <span class="course-price">Gratis</span>
-      </div>
-      <button class="btn-enroll"
-              data-tipo="C"
-              data-nombre="CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2"
-              onclick="abrirInscripcionVisible('C', 'CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2')">
-        <i class="fas fa-sign-in-alt"></i> Inscribirse
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="col-md-4 mb-4">
-  <div class="course-card">
-    <div class="course-img"><i class="bi bi-translate"></i></div>
-    <div class="course-body">
-      <h3 class="course-title">CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2</h3>
-      <p class="course-description">Consolida y amplía tus conocimientos del idioma inglés con temas del día a día y práctica interactiva.</p>
-      <div class="course-meta">
-        <span class="course-rating"><i class="bi bi-star-fill"></i>4.3</span>
-        <span class="course-price">Gratis</span>
-      </div>
-      <button class="btn-enroll"
-              data-tipo="C"
-              data-nombre="CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2"
-              onclick="abrirInscripcionVisible('C', 'CURSO BÁSICO DE INGLÉS PARA PRINCIPIANTES Nivel 2')">
-        <i class="fas fa-sign-in-alt"></i> Inscribirse
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- MECATRÓNICA CREATIVA -->
-<div class="col-md-4 mb-4">
-  <div class="course-card tech-card" data-category="mecatronica">
+  <div class="course-card tech-card" data-category="tecnologia">
     <div class="course-img">
       <i class="bi bi-cpu"></i>
     </div>
@@ -207,9 +244,9 @@
   </div>
 </div>
 
-<!-- MECATRÓNICA INTERMEDIA -->
+<!-- Mecatrónica -->
 <div class="col-md-4 mb-4">
-  <div class="course-card tech-card" data-category="mecatronica">
+  <div class="course-card tech-card" data-category="tecnologia">
     <div class="course-img">
       <i class="bi bi-gear"></i>
     </div>
@@ -230,8 +267,9 @@
 </div>
 
 <!-- USO INTELIGENTE DE LAS REDES SOCIALES -->
+<!-- Tecnología - Redes Sociales -->
 <div class="col-md-4 mb-4">
-  <div class="course-card tech-card" data-category="tecnologia">
+  <div class="course-card tech-card" data-category="tics">
     <div class="course-img">
       <i class="bi bi-share"></i>
     </div>
@@ -251,9 +289,9 @@
   </div>
 </div>
 
-<!-- CURSO PASANTIA PARA DOCENTES EN TIC E IA -->
+<!-- Tecnología - TIC e IA -->
 <div class="col-md-4 mb-4">
-  <div class="course-card tech-card" data-category="educacion-tecnologica">
+  <div class="course-card tech-card" data-category="tics">
     <div class="course-img">
       <i class="bi bi-laptop"></i>
     </div>
@@ -273,9 +311,9 @@
   </div>
 </div>
 
-<!-- Introducción a la Informática -->
+<!-- Tecnología - Informática -->
 <div class="col-md-4 mb-4">
-  <div class="course-card tech-card" data-category="informatica">
+  <div class="course-card tech-card" data-category="tics">
     <div class="course-img">
       <i class="bi bi-display"></i>
     </div>
@@ -295,9 +333,9 @@
   </div>
 </div>
 
-<!-- IA: Fundamentos de ML y Regresión -->
+<!-- Inteligencia Artificial -->
 <div class="col-md-4 mb-4">
-  <div class="course-card ai-card" data-category="inteligencia-artificial">
+  <div class="course-card tech-card" data-category="tics">
     <div class="course-img">
       <i class="bi bi-brain"></i>
     </div>
@@ -317,9 +355,9 @@
   </div>
 </div>
 
-<!-- Indicadores de Calidad de Vida Estudiantil -->
+<!-- Educación -->
 <div class="col-md-4 mb-4">
-  <div class="course-card edu-card" data-category="educacion">
+  <div class="course-card edu-card" data-category="ocev">
     <div class="course-img">
       <i class="bi bi-graph-up-arrow"></i>
     </div>
@@ -339,7 +377,7 @@
   </div>
 </div>
 
-<!-- Estrategia y Táctica del Juego de Ajedrez -->
+<!-- Ajedrez -->
 <div class="col-md-4 mb-4">
   <div class="course-card logic-card" data-category="ajedrez">
     <div class="course-img">
@@ -361,7 +399,7 @@
   </div>
 </div>
 
-<!-- Ajedrez Multinivel -->
+<!-- Ajedrez -->
 <div class="col-md-4 mb-4">
   <div class="course-card logic-card" data-category="ajedrez">
     <div class="course-img">
@@ -383,9 +421,9 @@
   </div>
 </div>
 
-<!-- Organización de Grupos Estables -->
+<!-- Educación -->
 <div class="col-md-4 mb-4">
-  <div class="course-card edu-card" data-category="educacion">
+  <div class="course-card edu-card" data-category="ocev">
     <div class="course-img">
       <i class="bi bi-people"></i>
     </div>
@@ -406,8 +444,9 @@
 </div>
 
 <!-- Pensamiento Computacional y Calidad Educativa -->
+<!-- Pensamiento Computacional - Educación Tecnológica -->
 <div class="col-md-4 mb-4">
-  <div class="course-card logic-card" data-category="educacion-tecnologica">
+  <div class="course-card logic-card" data-category="eis">
     <div class="course-img">
       <i class="bi bi-cpu"></i>
     </div>
@@ -427,9 +466,9 @@
   </div>
 </div>
 
-<!-- Defensa Personal -->
+<!-- Defensa Personal - Deportes -->
 <div class="col-md-4 mb-4">
-  <div class="course-card sport-card" data-category="deportes">
+  <div class="course-card sport-card" data-category="deporte">
     <div class="course-img">
       <i class="bi bi-shield-lock"></i>
     </div>
@@ -449,17 +488,9 @@
   </div>
 </div>
 
-	
-				<!-- Más cursos... -->
-			</div>
-		</div>
-
-		<!-- Diplomados -->
-		<div class="tab-pane fade" id="diplomados" role="tabpanel">
-			<h2 class="category-title">Diplomados profesionales</h2>
-			<div class="row">
-			<div class="col-md-4 mb-4">
-  <div class="course-card diploma-card">
+<!-- Diplomado Teatro - Artes -->
+<div class="col-md-4 mb-4">
+  <div class="course-card diploma-card" data-category="artes">
     <div class="course-img">
       <i class="bi bi-award"></i>
     </div>
@@ -479,6 +510,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 <!-- Nuevo diplomado agregado -->
 <div class="col-md-4 mb-4">
@@ -1851,176 +1885,172 @@
 				</div>
 			</form>
 		</div>
+    <!-- Modal para agregar curso -->
+<!-- Modal para agregar curso -->
+<div class="modal fade" id="modalAgregarCurso" tabindex="-1" aria-labelledby="modalAgregarCursoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="formAgregarCurso">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="nombreCurso" class="form-label">Nombre del Curso</label>
+            <input type="text" class="form-control" id="nombreCurso" name="nombreCurso" placeholder="Ingrese el nombre del curso" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="categoriaCurso" class="form-label">Categoría</label>
+            <select class="form-select" id="categoriaCurso" name="categoriaCurso" required>
+              <option value="" selected disabled>Seleccione una categoría</option>
+              <option value="hoy">Disponibles de hoy</option>
+              <option value="all">Todas</option>
+              <option value="biologia">Biología</option>
+              <option value="fisica">Física</option>
+              <option value="quimica">Química</option>
+              <option value="matematicas">Matemática</option>
+              <option value="artes">Artes</option>
+              <option value="idiomas">Idiomas</option>
+              <option value="tecnologia">Tecnología</option>
+              <option value="ambiente">Ambiente</option>
+              <option value="ocev">OCEV</option>
+              <option value="ajedrez">Ajedrez</option>
+              <option value="lectura">Lectura/Escritura</option>
+              <option value="tics">TICs</option>
+              <option value="eis">EIS</option>
+              <option value="deporte">Deporte</option>
+              <option value="hse">HSE</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcionCurso" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcionCurso" name="descripcionCurso" rows="3" placeholder="Breve descripción del curso" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="duracionCurso" class="form-label">Duración (horas)</label>
+            <input type="number" class="form-control" id="duracionCurso" name="duracionCurso"  required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Curso</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row mt-5" id="contenedor-cursos">
+  <!-- Aquí se van a ir agregando los cursos -->
+</div>
+
+
 </main>
+
 <script>
-  // Convertimos la variable Blade a booleano JS
   const usuarioRegistrado = {{ auth()->check() ? 'true' : 'false' }} === true;
 
   function verificarSesion() {
     return usuarioRegistrado;
   }
 
-  function abrirInscripcionVisible() {
-    const inscripcionTab = document.querySelector('#inscripcion-tab');
-    if (inscripcionTab) {
-      const scrollTopBefore = window.pageYOffset;
-      new bootstrap.Tab(inscripcionTab).show();
-      window.scrollTo(0, scrollTopBefore);
-    }
-  }
-
-  // Mapeo correcto para IDs de selects
   const tipoMap = {
     'T': 'select_taller',
     'C': 'select_curso',
     'D': 'select_diplomado'
   };
 
-  function setFormacionFromStorage() {
-    const courseData = JSON.parse(sessionStorage.getItem('selected_course'));
-    if (courseData) {
-      // Seleccionar radio
-      const radio = document.querySelector(`input[name="tipo_formacion"][value="${courseData.tipo}"]`);
-      if (radio) {
-        radio.checked = true;
-        radio.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-      }
+  // Función para filtrar por categoría
+  function filtrarPorCategoria(categoria, tabPaneActivo = null) {
+    tabPaneActivo = tabPaneActivo || document.querySelector('.tab-pane.fade.show.active:not(#inscripcion)');
+    if (!tabPaneActivo) return;
 
-      // Mostrar select y seleccionar opción
-      const selectDivId = tipoMap[courseData.tipo];
-      if (selectDivId) {
-        const selectDiv = document.getElementById(selectDivId);
-        if (selectDiv) {
-          selectDiv.style.display = 'block';
-          const selectEl = selectDiv.querySelector('select');
-          if (selectEl) {
-            for (const option of selectEl.options) {
-              if (option.text.trim() === courseData.nombre.trim()) {
-                option.selected = true;
-                break;
-              }
-            }
-          }
+    const cards = tabPaneActivo.querySelectorAll('.course-card');
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      const isToday = card.getAttribute('data-hoy') === 'true';
+      const parentCol = card.closest('.col-md-4.mb-4');
+      if (!parentCol) return;
+
+      if (categoria === 'all') {
+        parentCol.style.display = 'block';
+      } else if (categoria === 'hoy') {
+        parentCol.style.display = isToday ? 'block' : 'none';
+      } else {
+        parentCol.style.display = cardCategory === categoria ? 'block' : 'none';
+      }
+    });
+
+    const categoryTitle = tabPaneActivo.querySelector('.category-title');
+    if (categoryTitle) {
+      if (categoria === 'all') {
+        const defaultTitles = {
+          'cursos': 'Cursos de Ciencias',
+          'talleres': 'Talleres prácticos',
+          'diplomados': 'Diplomados'
+        };
+        categoryTitle.textContent = defaultTitles[tabPaneActivo.id] || 'Formaciones';
+      } else if (categoria === 'hoy') {
+        categoryTitle.textContent = 'Cursos Disponibles de Hoy';
+      } else {
+        const filter = document.querySelector(`.category-filter[data-category="${categoria}"]`);
+        if (filter) {
+          const prefix = {
+            'cursos': 'Cursos ',
+            'talleres': 'Talleres de ',
+            'diplomados': 'Diplomados de '
+          }[tabPaneActivo.id] || '';
+          categoryTitle.textContent = prefix + filter.textContent.trim();
         }
       }
-
-      sessionStorage.removeItem('selected_course');
     }
+
+    // Actualizar clase activa en filtros
+    document.querySelectorAll('.category-filter').forEach(f => {
+      f.classList.toggle('active', f.getAttribute('data-category') === categoria);
+    });
+
+    // Actualizar botón agregar curso
+    actualizarBotonAgregarCurso(categoria, tabPaneActivo);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const tipoRadios = document.querySelectorAll('input[name="tipo_formacion"]');
-    const selectTaller = document.getElementById('select_taller');
-    const selectCurso = document.getElementById('select_curso');
-    const selectDiplomado = document.getElementById('select_diplomado');
-
-    function toggleSelects() {
-      if (selectTaller) selectTaller.style.display = 'none';
-      if (selectCurso) selectCurso.style.display = 'none';
-      if (selectDiplomado) selectDiplomado.style.display = 'none';
-
-      const checkedRadio = [...tipoRadios].find(r => r.checked);
-      if (!checkedRadio) return;
-
-      const selectDivId = tipoMap[checkedRadio.value];
-      if (selectDivId) {
-        const selectDiv = document.getElementById(selectDivId);
-        if (selectDiv) {
-          selectDiv.style.display = 'block';
-        }
-      }
-    }
-
-    if (tipoRadios.length > 0) {
-      tipoRadios.forEach(r => r.addEventListener('change', toggleSelects));
-
-      // Si hay old() en Laravel, seleccionar radio y disparar evento
-      const oldTipo = '{{ old("tipo_formacion") }}';
-      if (oldTipo) {
-        const radio = document.querySelector(`input[name="tipo_formacion"][value="${oldTipo}"]`);
-        if (radio) {
-          radio.checked = true;
-          radio.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-        }
-      } else {
-        toggleSelects();
-      }
-    }
-
-    // Si viene parámetro from_course, cargar desde sessionStorage y abrir tab
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('from_course')) {
-      setFormacionFromStorage();
-      abrirInscripcionVisible();
-    }
-
-    // Manejo de botones inscribirse
-    document.querySelectorAll('.btn-enroll').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.preventDefault();
-
-        const parentCard = btn.closest('.course-card');
-        const titulo = parentCard.querySelector('.course-title').innerText.trim();
-        const tipoFormacion = btn.getAttribute('data-tipo') || 'C';
-
-        if (verificarSesion()) {
-          abrirInscripcionVisible();
-
-          const radio = document.querySelector(`input[name="tipo_formacion"][value="${tipoFormacion}"]`);
-          if (radio) {
-            radio.checked = true;
-            radio.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-          }
-
-          const selectDivId = tipoMap[tipoFormacion];
-          if (selectDivId) {
-            const selectDiv = document.getElementById(selectDivId);
-            if (selectDiv) {
-              selectDiv.style.display = 'block';
-              const selectEl = selectDiv.querySelector('select');
-              if (selectEl) {
-                for (const option of selectEl.options) {
-                  if (option.text.trim() === titulo) {
-                    option.selected = true;
-                    break;
-                  }
-                }
-              }
-            }
-          }
-        } else {
-          // Guardar y redirigir a registro
-          sessionStorage.setItem('selected_course', JSON.stringify({
-            nombre: titulo,
-            tipo: tipoFormacion
-          }));
-          window.location.href = "{{ route('registro') }}?from_course=true";
-        }
-      });
-    });
-  });
+  // Función mejorada para mostrar el formulario de inscripción
   function abrirInscripcionVisible(tipoFormacion, nombreCurso) {
-  const inscripcionTab = document.querySelector('#inscripcion-tab');
-  if (inscripcionTab) {
-    const scrollTopBefore = window.pageYOffset;
-    new bootstrap.Tab(inscripcionTab).show();
-    window.scrollTo(0, scrollTopBefore);
+    if (!verificarSesion()) {
+      sessionStorage.setItem('selected_course', JSON.stringify({
+        nombre: nombreCurso,
+        tipo: tipoFormacion
+      }));
+      window.location.href = "{{ route('registro') }}?from_course=true";
+      return;
+    }
 
-    // Preseleccionar radio
+    // Activar la pestaña de inscripción
+    const inscripcionTab = document.getElementById('inscripcion');
+    if (!inscripcionTab) return;
+
+    // Ocultar todas las pestañas
+    document.querySelectorAll('.tab-pane').forEach(tab => {
+      tab.classList.remove('show', 'active');
+    });
+    
+    // Mostrar la pestaña de inscripción
+    inscripcionTab.classList.add('show', 'active');
+
+    // Configurar el tipo de formación
     const radio = document.querySelector(`input[name="tipo_formacion"][value="${tipoFormacion}"]`);
     if (radio) {
       radio.checked = true;
-      radio.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+      radio.dispatchEvent(new Event('change'));
     }
 
-    // Preseleccionar opción en select
-    const tipoMap = {
-      'T': 'select_taller',
-      'C': 'select_curso',
-      'D': 'select_diplomado'
-    };
+    // Configurar el select correspondiente
     const selectDivId = tipoMap[tipoFormacion];
     if (selectDivId) {
+      document.querySelectorAll('#select_taller, #select_curso, #select_diplomado').forEach(div => {
+        div.style.display = 'none';
+      });
+      
       const selectDiv = document.getElementById(selectDivId);
       if (selectDiv) {
         selectDiv.style.display = 'block';
@@ -2035,8 +2065,174 @@
         }
       }
     }
+
+    // Mostrar el formulario sin hacer scroll
+    inscripcionTab.style.display = 'block';
+    inscripcionTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-}
 
+  // Función para alternar entre selects
+  function toggleSelects() {
+    document.querySelectorAll('#select_taller, #select_curso, #select_diplomado').forEach(div => {
+      div.style.display = 'none';
+    });
+
+    const checkedRadio = document.querySelector('input[name="tipo_formacion"]:checked');
+    if (checkedRadio) {
+      const selectDivId = tipoMap[checkedRadio.value];
+      if (selectDivId) {
+        document.getElementById(selectDivId).style.display = 'block';
+      }
+    }
+  }
+
+  // Función para actualizar botón de agregar curso
+  function actualizarBotonAgregarCurso(categoria, tabPaneActivo) {
+    if (!tabPaneActivo || tabPaneActivo.id !== 'cursos') return;
+
+    let header = tabPaneActivo.querySelector('.d-flex.justify-content-between');
+    if (!header) {
+      // Crear encabezado si no existe
+      const titulo = tabPaneActivo.querySelector('.category-title');
+      if (!titulo) return;
+
+      header = document.createElement('div');
+      header.className = 'd-flex justify-content-between align-items-center mb-3';
+      titulo.parentNode.insertBefore(header, titulo);
+      header.appendChild(titulo);
+    }
+
+    let btnAgregar = header.querySelector('#btnAgregarCursoNuevo');
+
+    if (categoria === 'hoy') {
+      if (!btnAgregar) {
+        btnAgregar = document.createElement('button');
+        btnAgregar.id = 'btnAgregarCursoNuevo';
+        btnAgregar.type = 'button';
+        btnAgregar.className = 'btn btn-outline-primary';
+        btnAgregar.setAttribute('data-bs-toggle', 'modal');
+        btnAgregar.setAttribute('data-bs-target', '#modalAgregarCurso');
+        btnAgregar.innerHTML = '<i class="bi bi-plus-circle me-1"></i> Agregar Curso Nuevo';
+        header.appendChild(btnAgregar);
+      }
+    } else if (btnAgregar) {
+      btnAgregar.remove();
+    }
+  }
+
+  // Función para manejar el formulario de agregar curso
+  function setupAgregarCurso() {
+    const formAgregarCurso = document.getElementById('formAgregarCurso');
+    const modalAgregarCursoEl = document.getElementById('modalAgregarCurso');
+    const modalAgregarCurso = modalAgregarCursoEl ? new bootstrap.Modal(modalAgregarCursoEl) : null;
+
+    if (formAgregarCurso) {
+      formAgregarCurso.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nombre = formAgregarCurso.nombreCurso.value.trim();
+        const categoria = formAgregarCurso.categoriaCurso.value;
+        const descripcion = formAgregarCurso.descripcionCurso.value.trim();
+        const duracion = formAgregarCurso.duracionCurso.value;
+
+        if (!nombre || !categoria || !descripcion || !duracion) {
+          alert('Por favor, complete todos los campos del formulario.');
+          return;
+        }
+
+        const iconosCategorias = {
+          'biologia': 'bi-flower3',
+          'fisica': 'bi-eyedropper',
+          'quimica': 'bi-funnel',
+          'matematicas': 'bi-calculator',
+          'artes': 'bi-palette',
+          'idiomas': 'bi-translate',
+          'tecnologia': 'bi-cpu',
+          'ambiente': 'bi-tree',
+          'ocev': 'bi-clipboard-data',
+          'ajedrez': 'bi-chess',
+          'lectura': 'bi-book',
+          'tics': 'bi-laptop',
+          'eis': 'bi-lightbulb',
+          'deporte': 'bi-trophy',
+          'hse': 'bi-shield-check'
+        };
+
+        const icono = iconosCategorias[categoria] || 'bi-bookmark-star';
+
+        const nuevoHTML = `
+          <div class="col-md-4 mb-4 course-item" data-category="${categoria}" data-hoy="true">
+            <div class="course-card" data-category="${categoria}" data-hoy="true">
+              <div class="course-img"><i class="bi ${icono}"></i></div>
+              <div class="course-body">
+                <h3 class="course-title">${nombre}</h3>
+                <p class="course-description">${descripcion}</p>
+                <div class="course-meta">
+                  <span class="course-rating"><i class="bi bi-star-fill"></i>4.0</span>
+                  <span class="course-price">Gratis</span>
+                </div>
+                <button class="btn-enroll" 
+                        data-tipo="C" 
+                        data-nombre="${nombre.replace(/'/g, "\\'")}"
+                        onclick="abrirInscripcionVisible('C', '${nombre.replace(/'/g, "\\'")}')">
+                  <i class="fas fa-sign-in-alt"></i> Inscribirse
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const container = document.querySelector('#cursos .row');
+        if (container) {
+          container.insertAdjacentHTML('beforeend', nuevoHTML);
+        }
+
+        // Resetear y cerrar el modal correctamente
+        formAgregarCurso.reset();
+        if (modalAgregarCurso) {
+          modalAgregarCurso.hide();
+        }
+
+        // Eliminar el backdrop manualmente si persiste
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach(backdrop => backdrop.remove());
+        
+        // Habilitar el scroll del body si fue deshabilitado
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = '0';
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Configurar el formulario de agregar curso
+    setupAgregarCurso();
+
+    // Filtros
+    document.querySelectorAll('.category-filter').forEach(filter => {
+      filter.addEventListener('click', (e) => {
+        e.preventDefault();
+        const categoria = filter.getAttribute('data-category');
+        filtrarPorCategoria(categoria);
+      });
+    });
+
+    // Configurar los radio buttons para mostrar los selects correspondientes
+    const tipoRadios = document.querySelectorAll('input[name="tipo_formacion"]');
+    tipoRadios.forEach(r => r.addEventListener('change', toggleSelects));
+    toggleSelects();
+
+    // Manejar clic en botones de inscripción
+    document.body.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-enroll')) {
+        e.preventDefault();
+        const btn = e.target.closest('.btn-enroll');
+        const parentCard = btn.closest('.course-card');
+        const titulo = parentCard.querySelector('.course-title').innerText.trim();
+        const tipoFormacion = btn.getAttribute('data-tipo') || 'C';
+        
+        abrirInscripcionVisible(tipoFormacion, titulo);
+      }
+    });
+  });
 </script>
-
