@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Inscripcion;
 
 class UsuarioController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        return view('usuario.panel', compact('user'));
+        $inscripciones = Inscripcion::where('user_id', auth()->id())->get();
+
+        return view('usuario.panel', compact('inscripciones'));
     }
-    
 }
+
+

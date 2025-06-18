@@ -86,6 +86,7 @@
     <main class="py-4">
         @yield('content')
     </main>
+    
      <!-- Footer con logo -->
      <footer>
         <div class="container">

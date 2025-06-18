@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Inscripcion;
 
 class InscripcionController extends Controller
 {
-    // Mostrar el formulario vacío o con tipo de formación preseleccionado
     public function mostrarFormulario(Request $request)
     {
-        $tipo = $request->input('tipo'); // Captura el tipo desde la URL o el formulario
+        $tipo = $request->input('tipo');
         return view('inscripcion', ['tipoSeleccionado' => $tipo]);
     }
 
-    // Procesar el formulario
     public function procesarFormulario(Request $request)
     {
         $request->validate([
@@ -26,21 +24,44 @@ class InscripcionController extends Controller
             'diplomado' => 'nullable|required_if:tipo_formacion,D|string',
             'horas' => 'nullable|integer',
             'tipo_formacion' => 'required|string|in:T,C,D',
+            'facilitador' => 'nullable|string',
+            'codigo_facilitador' => 'nullable|string',
         ]);
 
-        DB::table('inscripciones')->insert([
-            'nombre' => $request->input('nombre'),
-            'cedula' => $request->input('cedula'),
-            'estado' => $request->input('estado'),
-            'taller' => $request->input('taller'),
-            'curso' => $request->input('curso'),
-            'diplomado' => $request->input('diplomado'),
-            'horas' => $request->input('horas'),
-            'tipo_formacion' => $request->input('tipo_formacion'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $inscripcion = new Inscripcion();
+        $inscripcion->nombre = $request->input('nombre');
+        $inscripcion->cedula = $request->input('cedula');
+        $inscripcion->estado = $request->input('estado');
+        $inscripcion->estado_formacion = 'pendiente';
+        $inscripcion->taller = $request->input('taller');
+        $inscripcion->curso = $request->input('curso');
+        $inscripcion->diplomado = $request->input('diplomado');
+        $inscripcion->horas = $request->input('horas');
+        $inscripcion->tipo_formacion = $request->input('tipo_formacion');
+        $inscripcion->facilitador = $request->input('facilitador');
+        $inscripcion->codigo_facilitador = $request->input('codigo_facilitador');
+        $inscripcion->user_id = auth()->id();
+        $inscripcion->save();
 
         return redirect()->back()->with('success', '¡Inscripción registrada correctamente!');
+    }
+
+    public function verPanel()
+    {
+        $inscripciones = Inscripcion::where('user_id', auth()->id())->get();
+        return view('usuario.panel', compact('inscripciones'));
+    }
+
+    public function actualizarEstado(Request $request, $id)
+    {
+        $request->validate([
+            'estado_formacion' => 'required|in:pendiente,aprobado,rechazado',
+        ]);
+
+        $inscripcion = Inscripcion::findOrFail($id);
+        $inscripcion->estado_formacion = $request->estado_formacion;
+        $inscripcion->save();
+
+        return redirect()->back()->with('success', 'Estado actualizado correctamente.');
     }
 }
