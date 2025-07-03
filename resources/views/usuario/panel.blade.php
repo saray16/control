@@ -46,82 +46,70 @@
                                 </thead>
                                 <tbody>
                                     @foreach($inscripciones as $inscripcion)
-                                        <tr class="border-top">
-                                            <td class="py-3 px-4">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar-sm bg-light rounded-circle me-3">
-                                                        <span class="avatar-title text-primary">
-                                                            {{ substr($inscripcion->nombre, 0, 1) }}
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                        <h6 class="mb-0">{{ $inscripcion->nombre }}</h6>
-                                                        <small class="text-muted">{{ $inscripcion->cedula }}</small>
-                                                    </div>
+                                    <tr class="border-top">
+                                        <td class="py-3 px-4">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar-sm bg-light rounded-circle me-3">
+                                                    <span class="avatar-title text-primary">
+                                                        {{ substr($inscripcion->nombre, 0, 1) }}
+                                                    </span>
                                                 </div>
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                @switch($inscripcion->tipo_formacion)
-    @case('C')
-        <span class="badge bg-info">Curso</span>
-        @break
-    @case('T')
-        <span class="badge bg-warning text-dark">Taller</span>
-        @break
-    @case('D')
-        <span class="badge" style="background-color: #6f42c1; color: white;">Diplomado</span>
-        @break
-    @default
-        <span class="badge bg-secondary">Desconocido</span>
-@endswitch
-
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                <h6 class="mb-0">{{ $inscripcion->nombre_formacion }}</h6>
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                {{ $inscripcion->facilitador ?? 'No asignado' }}
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                {{ $inscripcion->horas ? $inscripcion->horas . ' horas' : 'N/A' }}
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                {{ $inscripcion->created_at->format('d/m/Y') }}
-                                            </td>
-                                            <td class="py-3 px-4">
-                                                @if(strtolower($inscripcion->estado_formacion) === 'aprobado')
-                                                    <span class="badge bg-success-light text-success">
-                                                        <i class="fas fa-check-circle me-1"></i> Aprobado
-                                                    </span>
-                                                @elseif(strtolower($inscripcion->estado_formacion) === 'pendiente')
-                                                    <span class="badge bg-warning-light text-warning">
-                                                        <i class="fas fa-clock me-1"></i> Pendiente
-                                                    </span>
-                                                @else
-                                                    <span class="badge bg-secondary-light text-secondary">
-                                                        {{ ucfirst($inscripcion->estado_formacion) }}
-                                                    </span>
+                                                <div>
+                                                    <h6 class="mb-0">{{ $inscripcion->nombre }}</h6>
+                                                    <small class="text-muted">{{ $inscripcion->documento_completo }}</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <span class="badge {{ $inscripcion->tipo_formacion == 'C' ? 'bg-info' : ($inscripcion->tipo_formacion == 'T' ? 'bg-warning text-dark' : 'bg-purple text-black') }}">
+                                                @if($inscripcion->tipo_formacion == 'C')
+                                                    Curso
+                                                @elseif($inscripcion->tipo_formacion == 'T')
+                                                    Taller
+                                                @elseif($inscripcion->tipo_formacion == 'D')
+                                                    Diplomado
                                                 @endif
-                                            </td>
-                                            <td class="py-3 px-4 text-end">
-                                                @if(strtolower($inscripcion->estado_formacion) === 'aprobado')
-                                                    @php
-                                                        $tipoCertificado = [
-                                                            'C' => 'curso',
-                                                            'T' => 'taller', 
-                                                            'D' => 'diplomado'
-                                                        ][$inscripcion->tipo_formacion] ?? 'curso';
-                                                    @endphp
-                                                    <a href="{{ url('/certificado/' . $tipoCertificado . '/' . $inscripcion->id) }}" 
-                                                       class="btn btn-sm btn-outline-primary"
-                                                       target="_blank">
-                                                       <i class="fas fa-file-pdf me-1"></i> Descargar
-                                                    </a>
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            <h6 class="mb-0">
+                                                @if($inscripcion->tipo_formacion == 'C' && $inscripcion->curso)
+                                                    {{ $inscripcion->curso }}
+                                                @elseif($inscripcion->tipo_formacion == 'T' && $inscripcion->taller)
+                                                    {{ $inscripcion->taller }}
+                                                @elseif($inscripcion->tipo_formacion == 'D' && $inscripcion->diplomado)
+                                                    {{ $inscripcion->diplomado }}
                                                 @else
-                                                    <span class="text-muted small">No disponible</span>
+                                                    N/A
                                                 @endif
-                                            </td>
-                                        </tr>
+                                            </h6>
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            {{ $inscripcion->facilitador ?? 'No asignado' }}
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            {{ $inscripcion->horas ? $inscripcion->horas.' horas' : 'N/A' }}
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            {{ $inscripcion->created_at->format('d/m/Y') }}
+                                        </td>
+                                        <td class="py-3 px-4">
+                                            @if($inscripcion->estado_formacion == 'aprobado')
+                                                <span class="badge bg-success">● Aprobado</span>
+                                            @else
+                                                <span class="badge bg-warning">● Pendiente</span>
+                                            @endif
+                                        </td>
+                                        <td class="py-3 px-4 text-end">
+                                            @if($inscripcion->estado_formacion == 'aprobado')
+                                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-file-pdf me-1"></i> Descargar
+                                                </a>
+                                            @else
+                                                <span class="text-muted small">No disponible</span>
+                                            @endif
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

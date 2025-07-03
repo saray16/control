@@ -44,20 +44,25 @@ class Inscripcion extends Model
     {
         return $this->belongsTo(Formacion::class, 'formacion_id');
     }
+// En app/Models/Inscripcion.php
+public function getNombreFormacionAttribute()
+{
+    return match($this->tipo_formacion) {
+        'C' => $this->curso,
+        'T' => $this->taller,
+        'D' => $this->diplomado,
+        default => 'N/A'
+    };
+}
 
-    public function getTipoFormacionNombreAttribute()
-    {
-        return match ($this->tipo_formacion) {
-            'C' => 'curso',
-            'T' => 'taller',
-            'D' => 'diplomado',
-            default => 'desconocido',
-        };
-    }
-
-    // Ahora obtenemos el nombre desde la relación formacion
-    public function getNombreFormacionAttribute()
-    {
-        return $this->formacion?->nombre ?? 'Desconocido';
-    }
+public function getTipoFormacionTextoAttribute()
+{
+    return match($this->tipo_formacion) {
+        'C' => 'Curso',
+        'T' => 'Taller',
+        'D' => 'Diplomado',
+        default => 'N/A'
+    };
+}
+    
 }

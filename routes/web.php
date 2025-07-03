@@ -27,10 +27,10 @@ Route::get('/admin/usuarios/{id}/editar', [AdminController::class, 'edit'])->nam
 Route::put('/admin/inscripciones/{id}/estado', [InscripcionController::class, 'actualizarEstado'])
     ->name('inscripciones.actualizarEstado')
     ->middleware('auth');
-
+Route::get('/admin/certificados/{id}/descargar', [AdminController::class, 'descargarCertificado'])
+     ->name('admin.certificados.descargar');
 // Rutas usuario
-Route::get('/usuario', [UsuarioController::class, 'index'])->middleware('auth');
-Route::get('/usuario/panel', [InscripcionController::class, 'verPanel'])->middleware('auth')->name('usuario.panel');
+Route::get('/usuario', [InscripcionController::class, 'verPanel'])->middleware('auth')->name('usuario.panel');
 
 // Otras rutas existentes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -45,7 +45,6 @@ Route::controller(RegisterController::class)->group(function () {
     Route::get('/registro', 'showRegistrationForm')->name('registro');
     Route::post('/registro', 'register')->name('registro.submit');
 });
-
 Route::get('/inscribirse', function () {
     if (auth('web')->check()) {
         return redirect()->route('inscripcion.formulario');
@@ -59,6 +58,7 @@ Route::post('/inscripcion', [InscripcionController::class, 'procesarFormulario']
 
 Route::view('/historia', 'quienessomos')->name('historia');
 
+// Dashboard admin
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
 Route::controller(AdminController::class)->group(function () {
@@ -79,3 +79,23 @@ Route::get('/formaciones', [FormacionController::class, 'index'])->name('formaci
 Route::get('/formaciones/{id}', [FormacionController::class, 'show'])->name('formaciones.show');
 Route::get('/formaciones/categoria/{categoria}', [FormacionController::class, 'filtrarPorCategoria'])->name('formaciones.categoria');
 
+// Crear formación (protegido por auth)
+Route::post('/formaciones', [FormacionController::class, 'store'])
+    ->name('formaciones.store')
+    ->middleware('auth');
+
+// Rutas protegidas por auth y admin
+Route::middleware(['auth'])->group(function () {
+    // Editar (form)
+    Route::get('/formaciones/{id}/edit', [FormacionController::class, 'edit'])
+        ->name('formaciones.edit');
+    
+    // Actualizar
+    Route::put('/formaciones/{id}', [FormacionController::class, 'update'])
+        ->name('formaciones.update');
+    
+    // Eliminar
+    Route::delete('/formaciones/{id}', [FormacionController::class, 'destroy'])
+        ->name('formaciones.destroy');
+        
+});

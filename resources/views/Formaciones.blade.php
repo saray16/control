@@ -14,24 +14,64 @@
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $formacion->nombre }}</h5>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h5 class="card-title">{{ $formacion->nombre }}</h5>
+                                @if($formacion->disponible_hoy)
+                                    <span class="badge bg-success">Disponible hoy</span>
+                                @endif
+                            </div>
 
                             @if($formacion->descripcion)
-                                <p class="card-text">{{ $formacion->descripcion }}</p>
+                                <p class="card-text text-muted mb-3">{{ Str::limit($formacion->descripcion, 100) }}</p>
                             @endif
 
-                            <ul class="list-unstyled text-muted small">
-                                <li><strong>Tipo:</strong> {{ $formacion->tipo }}</li>
+                            <div class="bg-light p-3 rounded small">
+                                <div class="mb-2">
+                                    <span class="fw-bold">Tipo:</span>
+                                    <span class="text-capitalize">{{ $formacion->tipo }}</span>
+                                </div>
+                                
                                 @if($formacion->duracion)
-                                    <li><strong>Duración:</strong> {{ $formacion->duracion }}</li>
+                                    <div class="mb-2">
+                                        <span class="fw-bold">Duración:</span>
+                                        <span>{{ $formacion->duracion }} horas académicas</span>
+                                    </div>
                                 @endif
+                                
+                                @if($formacion->facilitador)
+                                    <div class="mb-2">
+                                        <span class="fw-bold">Facilitador(es):</span>
+                                        <span class="text-primary">{{ $formacion->facilitador }}</span>
+                                    </div>
+                                @endif
+                                
                                 @if($formacion->cupos_disponibles)
-                                    <li><strong>Cupos:</strong> {{ $formacion->cupos_disponibles }}</li>
+                                    <div>
+                                        <span class="fw-bold">Cupos disponibles:</span>
+                                        <span>{{ $formacion->cupos_disponibles }}</span>
+                                    </div>
                                 @endif
-                                @if($formacion->disponible_hoy)
-                                    <li><strong>Disponible hoy</strong></li>
+                            </div>
+                            
+                            @auth
+                                @if(auth()->user()->rol === 'admin')
+                                    <div class="mt-3 d-flex gap-2">
+                                        <a href="{{ route('formaciones.edit', $formacion->id) }}" 
+                                           class="btn btn-sm btn-outline-warning">
+                                           <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                        
+                                        <form action="{{ route('formaciones.destroy', $formacion->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                    onclick="return confirm('¿Seguro que deseas eliminar esta formación?')">
+                                                <i class="fas fa-trash"></i> Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
                                 @endif
-                            </ul>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -39,7 +79,7 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-center">
-            {{ $formaciones->links() }} <!-- paginación -->
+            {{ $formaciones->links() }}
         </div>
     @endif
 </div>

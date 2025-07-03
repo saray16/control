@@ -14,7 +14,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'rol', // asegúrate que esta columna existe en la BD
+        'rol',
     ];
 
     protected $hidden = [
@@ -26,5 +26,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-}
 
+    // -------------------------------
+    // MÉTODOS DE AYUDA PARA LOS ROLES
+    // -------------------------------
+
+    public function isAdmin(): bool
+    {
+        return $this->rol === 'admin';
+    }
+
+    public function isFacilitador(): bool
+    {
+        return $this->rol === 'facilitador';
+    }
+
+    public function isUsuario(): bool
+    {
+        return $this->rol === 'usuario';
+    }
+}

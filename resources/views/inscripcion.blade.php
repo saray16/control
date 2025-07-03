@@ -42,6 +42,28 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+<!-- Después de las alertas y antes del formulario -->
+@if(isset($formacion) && $formacion)
+<div class="card mb-4 shadow-sm" id="formacion-details" style="max-width: 700px; margin: auto; border: 1px solid #dbe9f6; background-color: #f8fbfd;">
+    <div class="card-header" style="background-color: #1e3a8a; color: #fff; padding: 0.75rem 1rem;">
+        <h5 class="mb-0 fw-semibold">Detalles de la Formación</h5>
+    </div>
+    <div class="card-body py-3 px-4 d-flex flex-wrap align-items-center gap-3" style="background-color: #e6f0fa;">
+        <div class="flex-grow-1">
+            <h4 class="mb-1" id="formacion-nombre" style="color: #1e40af; font-size: 1.25rem;">{{ $formacion->nombre }}</h4>
+            <p class="text-muted mb-0" id="formacion-descripcion" style="font-size: 0.9rem; line-height: 1.4; color: #4b5563;">{{ $formacion->descripcion }}</p>
+        </div>
+        <div class="facilitador-card p-3 rounded border d-flex align-items-center" style="min-width: 220px; background-color: #f1f5f9; border-color: #cbd5e1;">
+            <i class="fas fa-chalkboard-teacher" style="color: #2563eb; font-size: 1.25rem; margin-right: 0.75rem;"></i>
+            <div>
+                <h6 class="mb-0 fw-semibold" id="formacion-facilitador" style="font-size: 1rem; color: #1e3a8a;">{{ $formacion->facilitador ?? 'Por asignar' }}</h6>
+                <small id="formacion-categoria-text" style="font-size: 0.8rem; color: #6b7280;">Experto en {{ $formacion->categoria }}</small>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 
             <!-- Formulario -->
             <div class="card shadow-sm border-0">
@@ -72,25 +94,58 @@
                                 </div>
 
                                 <!-- Cédula y Estado -->
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" id="cedula" name="cedula" class="form-control" 
-                                               placeholder="Cédula" required value="{{ old('cedula') }}"
-                                               pattern="[VEve]-?\d{6,8}" title="Formato: V-12345678 o 12345678">
-                                        <label for="cedula" class="form-label">Cédula <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Ingrese una cédula válida (Ej: V-12345678)
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+    <div class="form-floating">
+        <div class="input-group">
+            <select class="form-select" id="tipo_cedula" name="tipo_cedula" style="max-width: 80px;" required>
+                <option value="V" {{ old('tipo_cedula') == 'V' ? 'selected' : '' }}>V</option>
+                <option value="E" {{ old('tipo_cedula') == 'E' ? 'selected' : '' }}>E</option>
+                <option value="J" {{ old('tipo_cedula') == 'J' ? 'selected' : '' }}>J</option>
+                <option value="P" {{ old('tipo_cedula') == 'P' ? 'selected' : '' }}>P</option>
+            </select>
+            <input type="text" id="cedula" name="cedula" class="form-control" 
+                   placeholder="Número" required value="{{ old('cedula') }}"
+                   pattern="\d{6,8}" title="Formato: 12345678 (6-8 dígitos)">
+            <label for="cedula" class="form-label position-absolute" style="top: -10px; left: 90px; background: white; padding: 0 5px; z-index: 5;">Cédula <span class="text-danger">*</span></label>
+        </div>
+        <div class="invalid-feedback">
+            Ingrese un número de cédula válido (6-8 dígitos)
+        </div>
+    </div>
+</div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" id="estado" name="estado" class="form-control" 
-                                               placeholder="Estado" required value="{{ old('estado') }}">
+                                        <select id="estado" name="estado" class="form-select" required>
+                                            <option value="" disabled selected>Seleccione un estado</option>
+                                            <option value="Amazonas" {{ old('estado') == 'Amazonas' ? 'selected' : '' }}>Amazonas</option>
+                                            <option value="Anzoátegui" {{ old('estado') == 'Anzoátegui' ? 'selected' : '' }}>Anzoátegui</option>
+                                            <option value="Apure" {{ old('estado') == 'Apure' ? 'selected' : '' }}>Apure</option>
+                                            <option value="Aragua" {{ old('estado') == 'Aragua' ? 'selected' : '' }}>Aragua</option>
+                                            <option value="Barinas" {{ old('estado') == 'Barinas' ? 'selected' : '' }}>Barinas</option>
+                                            <option value="Bolívar" {{ old('estado') == 'Bolívar' ? 'selected' : '' }}>Bolívar</option>
+                                            <option value="Carabobo" {{ old('estado') == 'Carabobo' ? 'selected' : '' }}>Carabobo</option>
+                                            <option value="Cojedes" {{ old('estado') == 'Cojedes' ? 'selected' : '' }}>Cojedes</option>
+                                            <option value="Delta Amacuro" {{ old('estado') == 'Delta Amacuro' ? 'selected' : '' }}>Delta Amacuro</option>
+                                            <option value="Distrito Capital" {{ old('estado') == 'Distrito Capital' ? 'selected' : '' }}>Distrito Capital</option>
+                                            <option value="Falcón" {{ old('estado') == 'Falcón' ? 'selected' : '' }}>Falcón</option>
+                                            <option value="Guárico" {{ old('estado') == 'Guárico' ? 'selected' : '' }}>Guárico</option>
+                                            <option value="Lara" {{ old('estado') == 'Lara' ? 'selected' : '' }}>Lara</option>
+                                            <option value="Mérida" {{ old('estado') == 'Mérida' ? 'selected' : '' }}>Mérida</option>
+                                            <option value="Miranda" {{ old('estado') == 'Miranda' ? 'selected' : '' }}>Miranda</option>
+                                            <option value="Monagas" {{ old('estado') == 'Monagas' ? 'selected' : '' }}>Monagas</option>
+                                            <option value="Nueva Esparta" {{ old('estado') == 'Nueva Esparta' ? 'selected' : '' }}>Nueva Esparta</option>
+                                            <option value="Portuguesa" {{ old('estado') == 'Portuguesa' ? 'selected' : '' }}>Portuguesa</option>
+                                            <option value="Sucre" {{ old('estado') == 'Sucre' ? 'selected' : '' }}>Sucre</option>
+                                            <option value="Táchira" {{ old('estado') == 'Táchira' ? 'selected' : '' }}>Táchira</option>
+                                            <option value="Trujillo" {{ old('estado') == 'Trujillo' ? 'selected' : '' }}>Trujillo</option>
+                                            <option value="Vargas" {{ old('estado') == 'Vargas' ? 'selected' : '' }}>Vargas</option>
+                                            <option value="Yaracuy" {{ old('estado') == 'Yaracuy' ? 'selected' : '' }}>Yaracuy</option>
+                                            <option value="Zulia" {{ old('estado') == 'Zulia' ? 'selected' : '' }}>Zulia</option>
+                                        </select>
                                         <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
                                         <div class="invalid-feedback">
-                                            Por favor ingrese su estado
+                                            Por favor seleccione su estado
                                         </div>
                                     </div>
                                 </div>
@@ -138,91 +193,103 @@
                             </div>
 
                             <!-- Selects dinámicos -->
-                            <div class="row g-3">
-                                <div class="col-md-12 select-grupo" id="select_taller" style="display:none;">
-                                    <div class="form-floating">
-                                       <!-- Select Taller -->
-<select id="taller" name="taller" class="form-select" required>
-    <option value="" disabled {{ old('taller') ? '' : 'selected' }}>Seleccione un taller</option>
-    <option value="TALLER CONOCIENDO EL FUNCIONAMIENTO DE NUESTRO CUERPO" {{ old('taller') == 'TALLER CONOCIENDO EL FUNCIONAMIENTO DE NUESTRO CUERPO' ? 'selected' : '' }}>TALLER CONOCIENDO EL FUNCIONAMIENTO DE NUESTRO CUERPO</option>
-    <option value="Taller de Cocina" {{ old('taller') == 'Taller de Cocina' ? 'selected' : '' }}>Taller de Cocina</option>
-    <option value="Taller de Escritura Creativa" {{ old('taller') == 'Taller de Escritura Creativa' ? 'selected' : '' }}>Taller de Escritura Creativa</option>
-</select>
-                                        <label for="taller">Seleccione un Taller <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione un taller
-                                        </div>
-                                    </div>
-                                </div>
+                          <div class="row g-3">
+    <div class="col-md-12 select-grupo" id="select_taller" style="display:none;">
+        <div class="form-floating">
+            <select id="taller" name="taller" class="form-select" required>
+                <option value="" disabled {{ old('taller') ? '' : 'selected' }}>Seleccione un taller</option>
+                @foreach($talleres as $taller)
+                    <option value="{{ $taller->nombre }}" 
+                            {{ old('taller') == $taller->nombre ? 'selected' : '' }} 
+                            data-id="{{ $taller->id }}"
+                            data-duracion="{{ $taller->duracion }}"
+                            data-facilitador="{{ $taller->facilitador ?? '' }}"
+                            data-categoria="{{ $taller->categoria }}"
+                            data-descripcion="{{ $taller->descripcion }}">
+                        {{ $taller->nombre }}
+                    </option>
+                @endforeach
+            </select>
+            <label for="taller">Seleccione un Taller <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">
+                Por favor seleccione un taller
+            </div>
+        </div>
+    </div>
 
-                                <div class="col-md-12 select-grupo" id="select_curso" style="display:none;">
-                                    <div class="form-floating">
-                                        <select id="curso" name="curso" class="form-select" required>
-                                            <option value="" disabled {{ old('curso') ? '' : 'selected' }}>Seleccione un curso</option>
-                                            <option value="curso1" {{ old('curso') == 'curso1' ? 'selected' : '' }}>Curso de Programación</option>
-                                            <option value="curso2" {{ old('curso') == 'curso2' ? 'selected' : '' }}>Curso de Inglés</option>
-                                            <option value="curso3" {{ old('curso') == 'curso3' ? 'selected' : '' }}>Curso de Marketing Digital</option>
-                                        </select>
-                                        <label for="curso">Seleccione un Curso <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione un curso
-                                        </div>
-                                    </div>
-                                </div>
+    <div class="col-md-12 select-grupo" id="select_curso" style="display:none;">
+        <div class="form-floating">
+            <select id="curso" name="curso" class="form-select" required>
+                <option value="" disabled {{ old('curso') ? '' : 'selected' }}>Seleccione un curso</option>
+                @foreach($cursos as $curso)
+                    <option value="{{ $curso->nombre }}" 
+                            {{ old('curso') == $curso->nombre ? 'selected' : '' }}
+                            data-id="{{ $curso->id }}"
+                            data-duracion="{{ $curso->duracion }}"
+                            data-facilitador="{{ $curso->facilitador ?? '' }}"
+                            data-categoria="{{ $curso->categoria }}"
+                            data-descripcion="{{ $curso->descripcion }}">
+                        {{ $curso->nombre }}
+                    </option>
+                @endforeach
+            </select>
+            <label for="curso">Seleccione un Curso <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">
+                Por favor seleccione un curso
+            </div>
+        </div>
+    </div>
 
-                                <div class="col-md-12 select-grupo" id="select_diplomado" style="display:none;">
-                                    <div class="form-floating">
-                                        <select id="diplomado" name="diplomado" class="form-select" required>
-                                            <option value="" disabled {{ old('diplomado') ? '' : 'selected' }}>Seleccione un diplomado</option>
-                                            <option value="diplomado1" {{ old('diplomado') == 'diplomado1' ? 'selected' : '' }}>Diplomado en Gestión Empresarial</option>
-                                            <option value="diplomado2" {{ old('diplomado') == 'diplomado2' ? 'selected' : '' }}>Diplomado en Educación</option>
-                                            <option value="diplomado3" {{ old('diplomado') == 'diplomado3' ? 'selected' : '' }}>Diplomado en Salud Pública</option>
-                                        </select>
-                                        <label for="diplomado">Seleccione un Diplomado <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Por favor seleccione un diplomado
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="col-md-12 select-grupo" id="select_diplomado" style="display:none;">
+        <div class="form-floating">
+            <select id="diplomado" name="diplomado" class="form-select" required>
+                <option value="" disabled {{ old('diplomado') ? '' : 'selected' }}>Seleccione un diplomado</option>
+                @foreach($diplomados as $diplomado)
+                    <option value="{{ $diplomado->nombre }}" 
+                            {{ old('diplomado') == $diplomado->nombre ? 'selected' : '' }}
+                            data-id="{{ $diplomado->id }}"
+                            data-duracion="{{ $diplomado->duracion }}"
+                            data-facilitador="{{ $diplomado->facilitador ?? '' }}"
+                            data-categoria="{{ $diplomado->categoria }}"
+                            data-descripcion="{{ $diplomado->descripcion }}">
+                        {{ $diplomado->nombre }}
+                    </option>
+                @endforeach
+            </select>
+            <label for="diplomado">Seleccione un Diplomado <span class="text-danger">*</span></label>
+            <div class="invalid-feedback">
+                Por favor seleccione un diplomado
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Campo oculto para la duración predeterminada -->
+<input type="hidden" id="duracion_predeterminada" name="duracion_predeterminada" value="">
 
-                        <!-- Sección 3: Datos del Facilitador -->
-                        <div class="mb-4">
-                            <div class="section-header mb-4">
-                                <div class="section-icon">
-                                    <i class="bi bi-person-workspace"></i>
-                                </div>
-                                <h2 class="section-title">Datos del Facilitador</h2>
-                            </div>
+<!-- Mostrar duración al usuario -->
+<div class="col-md-12 mt-3">
+    <div class="alert alert-info">
+        <strong>Duración:</strong> <span id="duracion_mostrada">0</span> horas
+    </div>
+</div>
 
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" id="facilitador" name="facilitador" class="form-control" 
-                                               placeholder="Nombre del facilitador" required value="{{ old('facilitador') }}">
-                                        <label for="facilitador" class="form-label">Nombre y Apellido <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Por favor ingrese el nombre del facilitador
-                                        </div>
-                                    </div>
-                                </div>
+<!-- Campo editable solo para admin -->
+@auth
+    @if(auth()->check() && auth()->user()->is_admin)
+        <div class="col-md-12 mt-3">
+            <div class="form-floating">
+                <input type="number" id="duracion" name="duracion" class="form-control" 
+                       placeholder="Duración en horas" value="{{ old('duracion') }}">
+                <label for="duracion" class="form-label">Duración (horas) - Editable para administrador</label>
+            </div>
+        </div>
+    @endif
+@endauth
+                     @if(isset($formacion) && $formacion && $formacion->facilitador)
+    <input type="hidden" id="formacion_id" name="formacion_id" value="{{ $formacion->id ?? '' }}">
+<input type="hidden" id="facilitador" name="facilitador" value="{{ $formacion->facilitador ?? '' }}">
 
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" id="codigo_facilitador" name="codigo_facilitador" class="form-control" 
-                                               placeholder="Cédula del facilitador" required value="{{ old('codigo_facilitador') }}"
-                                               pattern="[VEve]-?\d{6,8}" title="Formato: V-12345678 o 12345678">
-                                        <label for="codigo_facilitador" class="form-label">Cédula <span class="text-danger">*</span></label>
-                                        <div class="invalid-feedback">
-                                            Ingrese una cédula válida (Ej: V-12345678)
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Botón de envío -->
+@endif   <!-- Botón de envío -->
                         <div class="text-center mt-5">
                             <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold">
                                 <i class="bi bi-send-fill me-2"></i> Enviar Inscripción
@@ -236,21 +303,26 @@
 </div>
 
 <style>
-    /* Estilos personalizados */
+    /* Estilos personalizados con la nueva paleta de colores */
     :root {
-        --primary-color: #4e73df;
-        --secondary-color: #f8f9fc;
+        --primary: #2c3e50;
+        --secondary: #3498db;
+        --accent: #678ca3;
+        --light: #f8f9fa;
+        --dark: #343a40;
         --text-dark: #2c3e50;
-        --text-muted: #6c757d;
-        --border-radius: 0.5rem;
+        --text-light: #6c757d;
+        --border: #ced4da;
+        --success: #27ae60;
+        --error: #e74c3c;
     }
     
     body {
-        background-color: #f8f9fa;
+        background-color: var(--light);
     }
     
     .text-gradient {
-        background: linear-gradient(90deg, #4e73df 0%, #224abe 100%);
+        background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -263,15 +335,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
-        box-shadow: 0 4px 15px rgba(78, 115, 223, 0.3);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
     }
     
     .card {
         border: none;
-        border-radius: var(--border-radius);
+        border-radius: 0.5rem;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: white;
     }
     
     .card:hover {
@@ -284,18 +357,18 @@
         align-items: center;
         gap: 1rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid #e9ecef;
+        border-bottom: 2px solid var(--border);
     }
     
     .section-icon {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background-color: rgba(78, 115, 223, 0.1);
+        background-color: rgba(44, 62, 80, 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--primary-color);
+        color: var(--primary);
     }
     
     .section-title {
@@ -306,19 +379,19 @@
     }
     
     .form-floating label {
-        color: var(--text-muted);
+        color: var(--text-light);
         font-weight: 500;
     }
     
     .form-control, .form-select {
-        border-radius: var(--border-radius);
+        border-radius: 0.5rem;
         padding: 1rem 1rem;
-        border: 1px solid #d1d3e2;
+        border: 1px solid var(--border);
     }
     
     .form-control:focus, .form-select:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
     }
     
     .form-check-card {
@@ -336,8 +409,8 @@
         align-items: center;
         justify-content: center;
         padding: 1rem;
-        border: 1px solid #d1d3e2;
-        border-radius: var(--border-radius);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
         cursor: pointer;
         transition: all 0.3s ease;
         text-align: center;
@@ -345,18 +418,18 @@
     }
     
     .form-check-card .form-check-input:checked + .form-check-label {
-        border-color: var(--primary-color);
-        background-color: rgba(78, 115, 223, 0.05);
-        color: var(--primary-color);
+        border-color: var(--secondary);
+        background-color: rgba(52, 152, 219, 0.05);
+        color: var(--secondary);
         font-weight: 500;
     }
     
     .form-check-card .form-check-input:focus + .form-check-label {
-        box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
     }
     
     .btn-primary {
-        background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         border: none;
         padding: 0.75rem 2rem;
         font-weight: 600;
@@ -366,31 +439,36 @@
     
     .btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+        box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
     }
     
     .alert-elegant {
         border-left: 4px solid;
-        border-radius: var(--border-radius);
+        border-radius: 0.5rem;
     }
     
     .alert-success.alert-elegant {
-        border-left-color: #1cc88a;
-        background-color: rgba(28, 200, 138, 0.1);
+        border-left-color: var(--success);
+        background-color: rgba(39, 174, 96, 0.1);
     }
     
     .alert-danger.alert-elegant {
-        border-left-color: #e74a3b;
-        background-color: rgba(231, 74, 59, 0.1);
+        border-left-color: var(--error);
+        background-color: rgba(231, 76, 60, 0.1);
     }
     
     .required-field::after {
         content: " *";
-        color: #e74a3b;
+        color: var(--error);
     }
     
     .invalid-feedback {
         font-size: 0.85rem;
+        color: var(--error);
+    }
+    
+    .text-danger {
+        color: var(--error) !important;
     }
     
     @media (max-width: 768px) {
@@ -426,7 +504,7 @@
             })
         })()
         
-        // Manejo de selects dinámicos
+        // Manejo de selects dinámicos y duración
         const tipoRadios = document.querySelectorAll('input[name="tipo_formacion"]');
         const selectTaller = document.getElementById('select_taller');
         const selectCurso = document.getElementById('select_curso');
@@ -444,7 +522,6 @@
 
             if (seleccionado.value === 'T') {
                 selectTaller.style.display = 'block';
-                // Hacer required solo el select visible
                 document.getElementById('taller').required = true;
                 document.getElementById('curso').required = false;
                 document.getElementById('diplomado').required = false;
@@ -459,48 +536,129 @@
                 document.getElementById('curso').required = false;
                 document.getElementById('diplomado').required = true;
             }
+            
+        
         }
 
-        tipoRadios.forEach(radio => {
-            radio.addEventListener('change', toggleSelects);
-        });
+        // Función para actualizar la duración
+        function actualizarDuracion() {
+            const seleccionado = document.querySelector('input[name="tipo_formacion"]:checked');
+            if (!seleccionado) return;
 
-        // Ejecutar al cargar para mostrar el select correcto según old()
-        toggleSelects();
+            let selectId = '';
+            switch(seleccionado.value) {
+                case 'T': selectId = 'taller'; break;
+                case 'C': selectId = 'curso'; break;
+                case 'D': selectId = 'diplomado'; break;
+            }
 
-        // Cargar datos desde sessionStorage si existen
-        const courseData = JSON.parse(sessionStorage.getItem('selected_course'));
-        if (courseData) {
-            const radio = document.querySelector(`input[name="tipo_formacion"][value="${courseData.tipo}"]`);
-            if (radio) {
-                radio.checked = true;
-                const event = new Event('change', { bubbles: true, cancelable: true });
-                radio.dispatchEvent(event);
-
-                // Seleccionar opción en select correspondiente
-                let selectId = '';
-                switch(courseData.tipo) {
-                    case 'T': selectId = 'taller'; break;
-                    case 'C': selectId = 'curso'; break;
-                    case 'D': selectId = 'diplomado'; break;
-                }
-                
-                if (selectId) {
-                    const selectEl = document.getElementById(selectId);
-                    if (selectEl) {
-                        // Buscar por texto (no por value)
-                        for (const option of selectEl.options) {
-                            if (option.text.trim() === courseData.nombre.trim()) {
-                                option.selected = true;
-                                break;
-                            }
+            if (selectId) {
+                const selectEl = document.getElementById(selectId);
+                if (selectEl) {
+                    const selectedOption = selectEl.options[selectEl.selectedIndex];
+                    if (selectedOption && selectedOption.dataset.duracion) {
+                        const duracion = selectedOption.dataset.duracion;
+                        document.getElementById('duracion_predeterminada').value = duracion;
+                        document.getElementById('duracion_mostrada').textContent = duracion;
+                        
+                        // Si es admin, establecer el valor en el campo editable
+                        const duracionInput = document.getElementById('duracion');
+                        if (duracionInput) {
+                            duracionInput.value = duracion;
                         }
                     }
                 }
             }
-            // Limpiar para no repetir
-            sessionStorage.removeItem('selected_course');
         }
+
+        // Event listeners
+        tipoRadios.forEach(radio => {
+            radio.addEventListener('change', toggleSelects);
+               toggleSelects();
+        actualizarDuracion();
+        });
+
+        document.getElementById('taller')?.addEventListener('change', actualizarDuracion);
+        document.getElementById('curso')?.addEventListener('change', actualizarDuracion);
+        document.getElementById('diplomado')?.addEventListener('change', actualizarDuracion);
+
+        // Ejecutar al cargar
+          toggleSelects();
+        actualizarDuracion();
+ function actualizarDetallesFormacion() {
+        const tipoSeleccionado = document.querySelector('input[name="tipo_formacion"]:checked');
+        if (!tipoSeleccionado) return;
+
+        let selectId = '';
+        switch(tipoSeleccionado.value) {
+            case 'T': selectId = 'taller'; break;
+            case 'C': selectId = 'curso'; break;
+            case 'D': selectId = 'diplomado'; break;
+        }
+
+        if (selectId) {
+            const selectEl = document.getElementById(selectId);
+            if (selectEl && selectEl.selectedIndex > 0) { // selectedIndex > 0 para omitir la opción vacía
+                const selectedOption = selectEl.options[selectEl.selectedIndex];
+                
+                // Mostrar la sección de detalles si estaba oculta
+                document.getElementById('formacion-details').style.display = 'block';
+                
+                // Actualizar los campos con los datos de la formación seleccionada
+                document.getElementById('formacion-nombre').textContent = selectedOption.text;
+                document.getElementById('formacion-descripcion').textContent = selectedOption.dataset.descripcion || '';
+          
+                document.getElementById('formacion-facilitador').textContent = selectedOption.dataset.facilitador || 'Por asignar';
+                
+                // Actualizar campos ocultos
+                document.getElementById('formacion_id').value = selectedOption.dataset.id || '';
+                document.getElementById('facilitador').value = selectedOption.dataset.facilitador || '';
+                    
+                // Actualizar duración visible
+                document.getElementById('duracion_mostrada').textContent = selectedOption.dataset.duracion || '0';
+                
+                // Si es admin, establecer el valor en el campo editable
+                const duracionInput = document.getElementById('duracion');
+                if (duracionInput) {
+                    duracionInput.value = selectedOption.dataset.duracion || '';
+                }
+            } else {
+                // Ocultar detalles si no hay selección válida
+                document.getElementById('formacion-details').style.display = 'none';
+            }
+        }
+    }
+
+    // Event listeners para cambios en los selects
+    document.getElementById('taller')?.addEventListener('change', actualizarDetallesFormacion);
+    document.getElementById('curso')?.addEventListener('change', actualizarDetallesFormacion);
+    document.getElementById('diplomado')?.addEventListener('change', actualizarDetallesFormacion);
+
+    // Event listeners para cambios en el tipo de formación
+    document.querySelectorAll('input[name="tipo_formacion"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Mostrar el select correspondiente
+            document.getElementById('select_taller').style.display = 'none';
+            document.getElementById('select_curso').style.display = 'none';
+            document.getElementById('select_diplomado').style.display = 'none';
+            
+            if (this.value === 'T') {
+                document.getElementById('select_taller').style.display = 'block';
+            } else if (this.value === 'C') {
+                document.getElementById('select_curso').style.display = 'block';
+            } else if (this.value === 'D') {
+                document.getElementById('select_diplomado').style.display = 'block';
+            }
+            
+            // Actualizar detalles después de un pequeño retraso para permitir que el select se muestre
+            setTimeout(actualizarDetallesFormacion, 100);
+        });
+    });
+
+    // Ejecutar al cargar si hay una formación seleccionada inicialmente
+    if (document.getElementById('formacion_id').value) {
+        actualizarDetallesFormacion();
+    }
     });
 </script>
 @endsection

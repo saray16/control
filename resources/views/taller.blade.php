@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>Certificado de Taller</title>
     <style>
+        @page {
+            size: landscape; 
+            margin: 0;
+         }
         body { font-family: Arial, sans-serif; }
         .certificado { 
             border: 2px solid #000; 
