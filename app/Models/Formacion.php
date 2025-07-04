@@ -20,13 +20,22 @@ class Formacion extends Model
         'disponible',
         'disponible_hoy',
         'icono',
+<<<<<<< HEAD
         'facilitador', 
         'codigo', 
+=======
+        'facilitador', // Añadido para relación con usuario facilitador
+        'codigo', // Añadido según migraciones vistas
+>>>>>>> 6f70c06 (Últimos cambios)
         'created_at',
         'updated_at'
     ];
 
+<<<<<<< HEAD
 
+=======
+    // Tipos de formaciones disponibles
+>>>>>>> 6f70c06 (Últimos cambios)
     public const TIPOS = [
         'C' => 'Curso',
         'T' => 'Taller',

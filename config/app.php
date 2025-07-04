@@ -7,9 +7,8 @@ return [
     | Application Name
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your application, which will be used when the
-    | framework needs to place the application's name in a notification or
-    | other UI elements where an application name needs to be displayed.
+    | Este valor es el nombre de tu aplicación, se usa en notificaciones
+    | y otros elementos de la interfaz donde se necesita mostrar el nombre.
     |
     */
 
@@ -20,9 +19,8 @@ return [
     | Application Environment
     |--------------------------------------------------------------------------
     |
-    | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | Define el "entorno" actual de la aplicación, que puede afectar
+    | configuraciones y servicios usados.
     |
     */
 
@@ -33,9 +31,8 @@ return [
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | Si está activado, muestra mensajes de error detallados y rastros de pila.
+    | Si está desactivado, muestra una página genérica de error.
     |
     */
 
@@ -46,9 +43,7 @@ return [
     | Application URL
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | the application so that it's available within Artisan commands.
+    | URL base usada para generar URLs con Artisan u otros procesos.
     |
     */
 
@@ -59,9 +54,7 @@ return [
     | Application Timezone
     |--------------------------------------------------------------------------
     |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. The timezone
-    | is set to "UTC" by default as it is suitable for most use cases.
+    | Zona horaria predeterminada para funciones de fecha/hora PHP.
     |
     */
 
@@ -72,34 +65,61 @@ return [
     | Application Locale Configuration
     |--------------------------------------------------------------------------
     |
-    | The application locale determines the default locale that will be used
-    | by Laravel's translation / localization methods. This option can be
-    | set to any locale for which you plan to have translation strings.
+    | Idioma predeterminado para la aplicación.
     |
     */
 
+<<<<<<< HEAD
     'locale' => env('APP_LOCALE', 'en'),
     'locale' => 'es',
 'fallback_locale' => 'es',
+=======
+    'locale' => 'es',
+>>>>>>> 6f70c06 (Últimos cambios)
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    /*
+    |--------------------------------------------------------------------------
+    | Fallback Locale
+    |--------------------------------------------------------------------------
+    |
+    | Idioma que se usará si no hay traducción para el idioma predeterminado.
+    |
+    */
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'fallback_locale' => 'es',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Faker Locale
+    |--------------------------------------------------------------------------
+    |
+    | Idioma para generar datos falsos con Faker (nombres, direcciones, etc).
+    |
+    */
+
+    'faker_locale' => 'es_ES',
 
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |
-    | This key is utilized by Laravel's encryption services and should be set
-    | to a random, 32 character string to ensure that all encrypted values
-    | are secure. You should do this prior to deploying the application.
+    | Clave usada para cifrar datos, debe ser una cadena aleatoria de 32 caracteres.
     |
     */
 
+    'key' => env('APP_KEY'),
+
     'cipher' => 'AES-256-CBC',
 
-    'key' => env('APP_KEY'),
+    /*
+    |--------------------------------------------------------------------------
+    | Previous Encryption Keys
+    |--------------------------------------------------------------------------
+    |
+    | Claves previas para facilitar la rotación de claves sin perder datos cifrados.
+    |
+    */
 
     'previous_keys' => [
         ...array_filter(
@@ -112,11 +132,8 @@ return [
     | Maintenance Mode Driver
     |--------------------------------------------------------------------------
     |
-    | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
-    | allow maintenance mode to be controlled across multiple machines.
-    |
-    | Supported drivers: "file", "cache"
+    | Controla cómo se maneja el modo mantenimiento.
+    | Puede ser "file" o "cache".
     |
     */
 

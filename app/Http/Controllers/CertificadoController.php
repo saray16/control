@@ -52,6 +52,19 @@ class CertificadoController extends Controller
 
         return $pdf->download($nombreArchivo);
     }
+    public function verificar($codigo)
+{
+    $inscripcion = Inscripcion::whereRaw(
+        "SHA2(CONCAT(id, user_id, ?), 256) = ?", 
+        [config('app.key'), $codigo]
+    )->first();
+
+    if (!$inscripcion) {
+        abort(404, 'Código de verificación no válido');
+    }
+
+    return view('certificados.verificar', compact('inscripcion'));
+}
 
     protected function generarCodigoVerificacion($inscripcion)
     {

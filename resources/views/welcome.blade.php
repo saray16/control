@@ -107,6 +107,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <script>
  document.addEventListener("DOMContentLoaded", function() {
         const btn = document.getElementById("recreacionalBtn");
@@ -117,6 +118,9 @@
         });
     });
     </script>
+=======
+
+>>>>>>> 6f70c06 (Últimos cambios)
 <!-- Animación personalizada -->
 <style>
 @keyframes slideDown {
@@ -129,10 +133,30 @@
         transform: translateY(0);
     }
 }
+<<<<<<< HEAD
 
 </style>
 
      </div>
+=======
+</style>
+
+<!-- Script de interacción -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btn = document.getElementById("recreacionalBtn");
+        const panel = document.getElementById("panelRecreacional");
+
+        btn.addEventListener("click", function() {
+            panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+        });
+    });
+</script>
+
+
+
+            </div>
+>>>>>>> 6f70c06 (Últimos cambios)
 
 
             <ul class="nav nav-tabs justify-content-center mb-4" id="formacionesTab" role="tablist">
@@ -542,7 +566,10 @@
 
  
     <!-- Modal para editar formación -->
+<<<<<<< HEAD
 <!-- Modal para editar formación - Código corregido -->
+=======
+>>>>>>> 6f70c06 (Últimos cambios)
 <div class="modal fade" id="editFormationModal" tabindex="-1" aria-labelledby="editFormationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg">
@@ -565,6 +592,10 @@
                                 <label for="editFormationName">Nombre *</label>
                             </div>
                             <div class="form-floating mb-4">
+<<<<<<< HEAD
+=======
+                                <!-- Cambio principal aquí: textarea con más rows y estilo -->
+>>>>>>> 6f70c06 (Últimos cambios)
                                 <textarea class="form-control" id="editFormationDescription" name="descripcion" style="min-height: 150px;" rows="5" required></textarea>
                                 <label for="editFormationDescription">Descripción *</label>
                             </div>
@@ -599,12 +630,15 @@
                                 <input class="form-check-input" type="checkbox" id="editFormationAvailableToday" name="disponible_hoy" value="1">
                                 <label class="form-check-label" for="editFormationAvailableToday">Disponible hoy</label>
                             </div>
+<<<<<<< HEAD
                             <!-- Campo agregado para el facilitador -->
                             <div class="form-floating mb-4">
                                 <input type="text" class="form-control" id="editFormationFacilitador" name="facilitador">
                                 <label for="editFormationFacilitador">Facilitador(es)</label>
                                 <small class="text-muted">Separa múltiples facilitadores con comas</small>
                             </div>
+=======
+>>>>>>> 6f70c06 (Últimos cambios)
                         </div>
                     </div>
                 </div>
@@ -740,7 +774,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const categoria = button.getAttribute('data-categoria');
             const duracion = button.getAttribute('data-duracion');
             const disponible = button.getAttribute('data-disponible') === '1';
+<<<<<<< HEAD
             const facilitador = button.getAttribute('data-facilitador');
+=======
+                const facilitador = button.getAttribute('data-facilitador');
+>>>>>>> 6f70c06 (Últimos cambios)
             
             // Configurar el formulario de edición
             const form = document.getElementById('editFormationForm');
@@ -754,7 +792,11 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('editFormationCategory').value = categoria;
             document.getElementById('editFormationDuration').value = duracion || '';
             document.getElementById('editFormationAvailableToday').checked = disponible;
+<<<<<<< HEAD
             document.getElementById('editFormationFacilitador').value = facilitador || '';
+=======
+                document.getElementById('editFormationFacilitador').value = facilitador || '';
+>>>>>>> 6f70c06 (Últimos cambios)
             
             // Actualizar el título del modal según el tipo
             let tipoTexto = '';
@@ -795,7 +837,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         duracion: form.duracion.value || null,
                         disponible_hoy: form.disponible_hoy.checked,
                          facilitador: form.facilitador.value || null,
+<<<<<<< HEAD
                          
+=======
+>>>>>>> 6f70c06 (Últimos cambios)
                         _method: 'PUT'
                     })
                 });
@@ -866,7 +911,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     categoria: form.categoria.value,
                     duracion: form.duracion.value || null,
                     disponible_hoy: form.disponible_hoy.checked,
+<<<<<<< HEAD
                      facilitador: form.facilitador.value || null,
+=======
+>>>>>>> 6f70c06 (Últimos cambios)
                     _token: document.querySelector('meta[name="csrf-token"]').content
                 };
 

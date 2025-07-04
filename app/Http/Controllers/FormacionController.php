@@ -78,7 +78,10 @@ public function store(Request $request)
             'categoria' => $validated['categoria'],
             'duracion' => $validated['duracion'] ?? null,
             'disponible_hoy' => $validated['disponible_hoy'],
+<<<<<<< HEAD
              'facilitador' => $validated['facilitador'] ?? null,
+=======
+>>>>>>> 6f70c06 (Últimos cambios)
             'icono' => $this->getIconForCategory($validated['categoria']),
         ]);
 

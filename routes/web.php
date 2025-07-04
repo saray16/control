@@ -12,6 +12,7 @@ use App\Http\Controllers\FormacionController;
 
 
 
+Route::get('/verificar/{codigo}', [CertificadoController::class, 'verificar'])->name('certificado.verificar');
 Route::get('/certificado/{tipo}/{id}', [CertificadoController::class, 'descargar'])
     ->middleware(['auth']) // si usas autenticación
     ->name('certificado.descargar');
