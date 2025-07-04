@@ -69,13 +69,7 @@ return [
     |
     */
 
-<<<<<<< HEAD
-    'locale' => env('APP_LOCALE', 'en'),
     'locale' => 'es',
-'fallback_locale' => 'es',
-=======
-    'locale' => 'es',
->>>>>>> 6f70c06 (Últimos cambios)
 
     /*
     |--------------------------------------------------------------------------
